@@ -1,0 +1,84 @@
+%отступы, левое, верхнее, правое, нижнее + от нижнего колонтитула
+\usepackage{vmargin} 
+\setmarginsrb{30mm}{20mm}{15mm}{20mm}{0pt}{0mm}{0pt}{12.5mm}
+
+%межстрочный интервал 1.5pt
+\usepackage{setspace}
+\onehalfspacing
+
+%абзацный отступ
+\usepackage{indentfirst}
+\setlength\parindent{12.5mm}
+
+%язык, кодировка, шрифт
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+
+
+%содержание
+\usepackage{tocloft}
+\usepackage{titlesec}
+
+%выравнивание слова СОДЕРЖАНИЕ
+\AtBeginDocument{\renewcommand{\contentsname}{\hfill\fontsize{16pt}{16pt}\bfseries СОДЕРЖАНИЕ \hfill}}
+\AtBeginDocument{\renewcommand{\cftaftertoctitle}{\hfill}}
+
+%жирность оглавления
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+%specialsection
+\newcommand{\specialsection}[1]{
+    \phantomsection
+    \fontsize{16pt}{16pt}
+    \begin{center}
+        \textbf{#1}
+    \end{center}
+    \par
+    \normalsize
+    \addcontentsline{toc}{section}{#1}
+}
+
+%section
+\titleformat{\section}{\fontsize{16pt}{16pt}\bfseries}{\thesection}{1em}{\centering}
+
+%subsection
+\titleformat{\subsection}{\fontsize{14pt}{14pt}\bfseries}{\thesubsection}{1em}{\centering}
+
+%точки в содержании
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+%нумерация через ссылки
+\usepackage{autonum}
+
+%математические символы
+\usepackage{amsmath,amsfonts,amssymb}
+
+%картинки
+\usepackage{graphicx}
+
+%настройка подписей к картинкам
+\usepackage[font=normalfont, figurename=Рисунок, labelsep=endash]{caption}
+
+%cpsconf список литературы
+\renewenvironment{thebibliography}[1]
+    {\bigskip
+    {\centering\fontsize{16pt}{16pt}\bf Список использованных источников\par}
+    \addcontentsline{toc}{section}{Список использованных источников}
+    \smallskip
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+        {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    \sloppy
+    \clubpenalty4000
+    \@clubpenalty \clubpenalty
+    \widowpenalty4000%
+    \sfcode`\.\@m}
+    {\def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+    \endlist}
