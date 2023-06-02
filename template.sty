@@ -15,7 +15,6 @@
 \usepackage[T2A]{fontenc}
 \usepackage[english, russian]{babel}
 
-
 %содержание
 \usepackage{tocloft}
 \usepackage{titlesec}
@@ -33,12 +32,11 @@
     \phantomsection
     \fontsize{16pt}{16pt}
     \begin{center}
-        \textbf{#1}
+    \textbf{#1}
     \end{center}
     \par
     \normalsize
-    \addcontentsline{toc}{section}{#1}
-}
+    \addcontentsline{toc}{section}{#1}}
 
 %section
 \titleformat{\section}{\fontsize{16pt}{16pt}\bfseries}{\thesection}{1em}{\centering}
